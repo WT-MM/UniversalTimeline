@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html{
+            scroll-behavior: smooth;
+        }
+        .button{
+            position:relative;
+            top: 80%;
+            left: 0;
+            right: 0;
+            color: #FFF;
+            font-family: "lato", sans-serif;
+            font-weight: 300;
+            font-size: 50px;
+            letter-spacing: 10px;
+            margin-top: -60px;
+            padding-left: 10px;
+            background: -webkit-linear-gradient(white, #38495a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 500ms ease-in-out 25ms;
+            width:fit-content;
+            margin-left:auto;
+            margin-right:auto;
+
+          }
+        .button:hover{
+            transform:translateY(-10px);
+        }
+        .card{
+            height:100%;
+            
+        }
+
+        .hidden{
+            display:none;
+        }
+
+        #back{
+            z-index:0;
+        }
+        #text{
+            color: #FFF;
+            position:relative;
+            text-align:center;
+            top:30%;
+            font-family: "lato", sans-serif;
+            font-weight: 360;
+            font-size: 30px;
+            letter-spacing: 3px;
+            margin-top: -60px;
+            padding-left: 10px;
+        }
+        #year{
+            color:white;
+            font-size:2rem;
+            font-weight:300;
+            position:fixed;
+            top:0;
+            font-family: "lato", sans-serif;
+            z-index: 4;
+            width:50%;
+            height:20%;
+
+        }
+        .event{
+            position:absolute;
+            background-color: white;
+            width:50%;
+            left:25%;
+            min-width: 100px;
+            height:2px;
+        }
+
+        .fadeOut{
+            opacity:0;
+            transition: opacity 500ms ease-in-out 25ms;
+        }
+        .fadeIn {
+            opacity: 1;
+            animation-name: fadeInOpacity;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+            animation-duration: 0.5s;
+        }
+
+        @keyframes fadeInOpacity {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .verticalLine{
+            position:absolute;
+            width:20px;
+            border-left: 3px dashed white;
+            height:100%;
+            left:30%;
+        }
+
+        .eventContainer{
+            position:absolute;
+            width:100%;
+            height:fit-content;
+        }
+
+        .eventImage{
+            width:30%;
+            height:100%;
+        }
+
+        .eventImage img{
+            width:100%;
+            height:auto;
+            object-fit:cover;
+        }
+
+        .eventLine{
+            position:absolute;
+            width:60%;
+            height:2px;
+            top:50%;
+            margin-left:30%;
+            border-bottom:2px dashed white;
+        }
+        .eventText{
+            position:absolute;
+            left:35%;
+            top:5%;
+            color:white;
+            font-weight:300;
+            font-family: "lato", sans-serif;
+        }
+
+        .nextEvent{
+            position:absolute;
+            bottom:30%;
+            left:50%;
+            color:white;
+            font-weight:300;
+            font-family: "lato", sans-serif;
+            transition:transform 500ms ease-in-out 25ms;
+        }
+
+        .nextEvent:hover{
+            transform:scale(1.1);
+        }
+        
+    </style>
+</head>
+  <body>
+    <div id="year">
+        <div id="hundred" style="position:absolute;top:40px;"></div>
+        <div id="thousand" style="position:absolute;top:0px;"></div>
+        <div id="million" style="position:absolute;top:40px;"></div>
+        <div id="billion" style="position:absolute;top:80px;"></div>
+    </div>
+
+
+
+      <div class="container" style="height:100vh;overflow:hidden">
+        <div class="card">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+            <div id="front" style="height:100%;">
+                <div id='title'>
+                  <span>
+                      The History Of the Universe
+                  </span>
+                  <br>
+                  <span>
+                    (Abridged)
+                  </span>
+                  
+                </div>  
+            <div class="button" onClick="toBack()">
+                    Info
+            </div>        
+            </div>
+            <div id="back" style="height:100%;">
+                <div id="text">
+                    <span>Each pixel represents one thousand years</span>
+                    <br>
+                    <br>
+                    <span>This means that this website is over 13.78 million pixels long</span>
+                    <br>
+                    <br>
+                    <span>The entirety of human history fits within the last 0.001% of this website</span>
+                </div>
+                <div class="button" style="top:63%;" onClick="toFront()">
+                    Back
+                </div>    
+            </div>
+        </div>
+
+      </div>
+      <div class="container" id="first" style="height:13780000px;position:relative;">
+        <div class="verticalLine"></div>
+
+
+        <div class="eventContainer" style="top:400px">
+            <div class="eventImage">
+                <img src="images/bigbang.jpg">
+            </div>
+            <div class="eventLine"></div>
+            <div class="eventText">Yeppp</div>
+            <div class="nextEvent">Next Event</div>
+        </div>
+
+
+        <div class="eventContainer" style="top:1000px">
+            <div class="eventImage">
+                <img src="images/bigbang.jpg">
+            </div>
+            <div class="eventLine"></div>
+            <div class="eventText">Yeppp</div>
+            <div class="nextEvent">Next Event</div>
+        </div>
+
+        <div class="event" style="bottom:0px"></div>
+
+    </div>
+    
+    <div id="bottom" style="height:30vw">
+        <div class="button" style="position:relative;top:60%;left:0;right:0;margin-left:auto;margin-right:auto;" onClick="window.location='#stars'">
+            Back to the beginning
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script>
+
+
+        height = $(window).height();
+        back =document.getElementById("back")
+        front = document.getElementById("front")
+        back.style.display="none"
+        function toBack(){
+            front.classList.remove("fadeIn");
+            front.classList.add("fadeOut")
+            back.classList.remove("fadeOut");
+            setTimeout(() => {
+                front.style.display="none"
+                back.style.display="block"
+                back.classList.add("fadeIn");
+            }, 500);
+
+        }
+        function toFront(){
+            back.classList.remove("fadeIn");
+            back.classList.add("fadeOut")
+            front.classList.remove("fadeOut");
+            
+            setTimeout(() => {
+                back.style.display= "none"
+                front.style.display="block"
+                front.classList.add("fadeIn");
+            }, 500);
+        }
+
+        const next = (event) => {
+        const list =   $('.eventContainer');
+        const index =  list.index($(event.target.parentNode));
+        const target = (index + 1) % list.length;
+        const nextNext = list.eq(target);
+        position = nextNext.offset().top
+        window.scrollTo(0, position-0.3*height)
+        };
+        $('.nextEvent').click(next).last().click()
+        window.scrollTo(0,0)
+
+        var year = document.getElementById('year');
+        year.style.display = "none";
+        const yep = [
+        document.getElementById("hundred"),
+        document.getElementById("thousand"),
+        document.getElementById("million"),
+        document.getElementById("billion")]
+        $(document).scroll(function() {
+            var y = $(document).scrollTop()
+            if(y >= height)  {
+                year.style.display = "block";
+                years = (y-height)*1000
+                thousands = (Math.round(years/100)/10) % 1000
+                millions = (Math.floor(years/1000)/1000) % 1000
+                billions = (Math.floor(years/10000000)/100) % 1000
+                //yep[0].innerHTML = years % 1000 
+                yep[1].innerHTML = thousands.toPrecision(3) +" thousand"
+                yep[2].innerHTML = millions.toPrecision(3) + " million"
+                yep[3].innerHTML = billions.toPrecision(3) + " billion years"
+            }else{
+                year.style.display="none";
+            }
+        });
+    </script>
+</body>
+</html>
+
