@@ -1,10 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="shortcut icon" type="image/png" href="favicon.ico" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <script>
+        var loaded = false
+        $(function () {
+            var includes = $('[data-include]')
+            $.each(includes, function () {
+            var file = $(this).data('include') + '.html'
+            $(this).load(file)
+            })
+            loaded=true
+        })
+    </script>
     <style>
         html{
             scroll-behavior: smooth;
@@ -111,15 +123,17 @@
             position:absolute;
             width:100%;
             height:fit-content;
+            min-height:20vh;
         }
 
         .eventImage{
             width:30%;
             height:100%;
+            object-fit:cover;
         }
 
-        .eventImage img{
-            width:100%;
+        img{
+            width:30%;
             height:auto;
             object-fit:cover;
         }
@@ -139,6 +153,7 @@
             color:white;
             font-weight:300;
             font-family: "lato", sans-serif;
+            max-width:600px;
         }
 
         .nextEvent{
@@ -157,7 +172,7 @@
         
     </style>
 </head>
-  <body>
+  <body style="background-color:black">
     <div id="year">
         <div id="hundred" style="position:absolute;top:40px;"></div>
         <div id="thousand" style="position:absolute;top:0px;"></div>
@@ -195,7 +210,11 @@
                     <span>This means that this website is over 13.78 million pixels long</span>
                     <br>
                     <br>
+                    <span>It would take around 40 minutes to scroll through all of history</span>
+                    <br>
+                    <br>
                     <span>The entirety of human history fits within the last 0.001% of this website</span>
+                    
                 </div>
                 <div class="button" style="top:63%;" onClick="toFront()">
                     Back
@@ -204,31 +223,8 @@
         </div>
 
       </div>
-      <div class="container" id="first" style="height:13780000px;position:relative;">
+      <div class="container" data-include="events" id="first" style="height:13780000px;position:relative;width:100%;">
         <div class="verticalLine"></div>
-
-
-        <div class="eventContainer" style="top:400px">
-            <div class="eventImage">
-                <img src="images/bigbang.jpg">
-            </div>
-            <div class="eventLine"></div>
-            <div class="eventText">Yeppp</div>
-            <div class="nextEvent">Next Event</div>
-        </div>
-
-
-        <div class="eventContainer" style="top:1000px">
-            <div class="eventImage">
-                <img src="images/bigbang.jpg">
-            </div>
-            <div class="eventLine"></div>
-            <div class="eventText">Yeppp</div>
-            <div class="nextEvent">Next Event</div>
-        </div>
-
-        <div class="event" style="bottom:0px"></div>
-
     </div>
     
     <div id="bottom" style="height:30vw">
@@ -266,16 +262,26 @@
             }, 500);
         }
 
-        const next = (event) => {
-        const list =   $('.eventContainer');
-        const index =  list.index($(event.target.parentNode));
-        const target = (index + 1) % list.length;
-        const nextNext = list.eq(target);
-        position = nextNext.offset().top
-        window.scrollTo(0, position-0.3*height)
-        };
-        $('.nextEvent').click(next).last().click()
-        window.scrollTo(0,0)
+        function clicky(){
+        if(loaded===false){
+          window.setTimeout(clicky, 100);
+        }else{      
+            //Need to make this true after template is loaded
+            const next = (event) => {
+            const list =   $('.eventContainer');
+            const index =  list.index($(event.target.parentNode));
+            const target = (index + 1) % list.length;
+            const nextNext = list.eq(target);
+            position = nextNext.offset().top
+            window.scrollTo(0, position-0.3*height)
+            };
+            $('.nextEvent').click(next).last().click()
+            window.scrollTo(0,0)
+        }
+        }
+        clicky()
+
+
 
         var year = document.getElementById('year');
         year.style.display = "none";
