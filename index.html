@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="shortcut icon" type="image/png" href="favicon.ico" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -125,6 +126,8 @@
             height:fit-content;
             min-height:20vh;
         }
+        
+
 
         .eventImage{
             width:30%;
@@ -136,29 +139,45 @@
             width:30%;
             height:auto;
             object-fit:cover;
+            border-radius:5px;
         }
 
-        .eventLine{
+        .eventContent{
             position:absolute;
-            width:60%;
-            height:2px;
-            top:50%;
-            margin-left:30%;
-            border-bottom:2px dashed white;
-        }
-        .eventText{
-            position:absolute;
-            left:35%;
+            left:30%;
+            padding-left:5%;
             top:5%;
             color:white;
             font-weight:300;
+            min-height:50%;
+            width:65%;
             font-family: "lato", sans-serif;
             max-width:600px;
+            border-bottom:2px dashed white;
+            padding-bottom:20px;
+            text-overflow: wrap;
+        }
+
+        .eventTitle{
+            position:relative;
+            color:white;
+            font-weight:300;
+            font-size:1.5rem;
+            text-align:left;
+
+            font-family: "lato", sans-serif;
+        }
+        .eventText{
+            top:10%;
+            position:relative;
+            font-weight:300;
+            font-size:2vw;
+            font-family: "lato", sans-serif;
         }
 
         .nextEvent{
             position:absolute;
-            bottom:30%;
+            bottom:10%;
             left:50%;
             color:white;
             font-weight:300;
@@ -170,6 +189,18 @@
             transform:scale(1.1);
         }
         
+        @media only screen and (max-width:350px){
+            .eventContent{
+                height:fit-content;
+            }
+            .nextEvent{
+                bottom:30%;
+            }
+            .eventTitle{
+                font-size:1.2rem;
+            }
+        }
+
     </style>
 </head>
   <body style="background-color:black">

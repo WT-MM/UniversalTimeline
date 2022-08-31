@@ -30,6 +30,9 @@ for event in events:
     eventLine = html.new_tag('div')
     eventLine['class'] = 'eventLine'
 
+    eventContent= html.new_tag('div')
+    eventContent['class'] = 'eventContent'
+
     eventTitle = html.new_tag('div')
     eventTitle['class'] = 'eventTitle'
     eventTitle.string = event[1]
@@ -38,14 +41,16 @@ for event in events:
     eventText['class'] = 'eventText'
     eventText.string = event[2]
 
+    eventContent.append(eventTitle)
+    eventContent.append(eventText)
+
     nextEvent = html.new_tag('div')
     nextEvent['class'] = 'nextEvent'
     nextEvent.string = 'Next Event'
 
     eventContainer.append(eventImg)
     eventContainer.append(eventLine)
-    eventContainer.append(eventTitle)
-    eventContainer.append(eventText)
+    eventContainer.append(eventContent)
     eventContainer.append(nextEvent)
     html.append(eventContainer)
 
